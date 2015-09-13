@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import java.text.DecimalFormat;
 import android.app.AlertDialog;
 
 public class MainActivity extends AppCompatActivity {
@@ -84,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
         sLef = Double.parseDouble(semLeft.getText().toString());
         sDon = Double.parseDouble(semDone.getText().toString());
 
-        fGPA = ((desGPA * (sDon + sLef)) - (cGPA * sDon)) / sLef;
-
+        fGPA = (((desGPA * (sDon + sLef)) - (cGPA * sDon)) / sLef);
+        System.out.println("test" + sLef);
 
         AlertDialog msg = new AlertDialog.Builder(MainActivity.this).create();
+
+        DecimalFormat doubleFormat = new DecimalFormat("#.####");
 
         msg.setTitle("Necessary GPA");
         if (Double.parseDouble(desRank.getText().toString()) > 109) {
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         else {
-            msg.setMessage("In order to get " + desGPA + " you must get a " + fGPA + " over " + semLeft.getText().toString());
+            msg.setMessage("In order to get " + desRank.getText().toString() + " you must get a " + doubleFormat.format(fGPA) + " over " + semLeft.getText().toString() + " semesters.");
         }
         msg.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
