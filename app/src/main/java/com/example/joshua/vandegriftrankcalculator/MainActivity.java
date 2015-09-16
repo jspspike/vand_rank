@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void onPress(View v) {
-            double fGPA, desGPA, sLef, sDon, cGPA;
+        double fGPA, desGPA, sLef, sDon, cGPA;
 
         desGPA = -1;
 
@@ -49,46 +49,80 @@ public class MainActivity extends AppCompatActivity {
         EditText semDone = (EditText) findViewById(R.id.semDone);
         EditText semLeft = (EditText) findViewById(R.id.semLeft);
 
-        if (Double.parseDouble(desRank.getText().toString()) <= 29) {
-            desGPA = (double)-37/(double)5000 * Double.parseDouble(desRank.getText().toString()) + (double)3471/(double)625;
+        AlertDialog msg = new AlertDialog.Builder(MainActivity.this).create();
+
+        try {
+
+            if (Double.parseDouble(desRank.getText().toString()) <= 15) {
+                desGPA = (double) -3 / (double) 400 * Double.parseDouble(desRank.getText().toString()) + (double) 11109 / (double) 2000;
+            }
+
+            if (Double.parseDouble(desRank.getText().toString()) > 15 && Double.parseDouble(desRank.getText().toString()) <= 29) {
+                desGPA = (double) -103 / (double) 14000 * Double.parseDouble(desRank.getText().toString()) + (double) 77733 / (double) 14000;
+            }
+
+            if (Double.parseDouble(desRank.getText().toString()) > 29 && Double.parseDouble(desRank.getText().toString()) <= 43) {
+                desGPA = (double) -4 / (double) 875 * Double.parseDouble(desRank.getText().toString()) + (double) 38301 / (double) 7000;
+            }
+
+            if (Double.parseDouble(desRank.getText().toString()) > 43 && Double.parseDouble(desRank.getText().toString()) <= 64) {
+                desGPA = (double) -1 / (double) 280 * Double.parseDouble(desRank.getText().toString()) + (double) 38 / (double) 7;
+            }
+
+            if (Double.parseDouble(desRank.getText().toString()) > 64 && Double.parseDouble(desRank.getText().toString()) <= 69) {
+                desGPA = (double) -19 / (double) 5000 * Double.parseDouble(desRank.getText().toString()) + (double) 3402 / (double) 625;
+            }
+
+            if (Double.parseDouble(desRank.getText().toString()) > 69 && Double.parseDouble(desRank.getText().toString()) <= 71) {
+                desGPA = (double) -7 / (double) 2000 * Double.parseDouble(desRank.getText().toString()) + (double) 2169 / (double) 400;
+            }
+
+            if (Double.parseDouble(desRank.getText().toString()) > 71 && Double.parseDouble(desRank.getText().toString()) <= 105) {
+                desGPA = (double) -73 / (double) 17000 * Double.parseDouble(desRank.getText().toString()) + (double) 93141 / (double) 17000;
+            }
+
+            if (Double.parseDouble(desRank.getText().toString()) > 105 && Double.parseDouble(desRank.getText().toString()) <= 109) {
+                desGPA = (double) -171 / (double) 40000 * Double.parseDouble(desRank.getText().toString()) + (double) 8763 / (double) 1600;
+            }
         }
 
-        if (Double.parseDouble(desRank.getText().toString()) > 29 && Double.parseDouble(desRank.getText().toString()) <= 42) {
-            desGPA = (double)-8/(double)1625 * Double.parseDouble(desRank.getText().toString()) + (double)71263/(double)13000;
+        catch (NumberFormatException e) {
+            msg.setMessage("Invalid Input");
+
+            msg.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            msg.show();
+            return;
         }
 
-        if (Double.parseDouble(desRank.getText().toString()) > 42 && Double.parseDouble(desRank.getText().toString()) <= 64){
-            desGPA = (double)-3/(double)880 * Double.parseDouble(desRank.getText().toString()) + (double)298/(double)55;
+        try {
+
+            cGPA = Double.parseDouble(curGPA.getText().toString());
+            sLef = Double.parseDouble(semLeft.getText().toString());
+            sDon = Double.parseDouble(semDone.getText().toString());
         }
 
-        if (Double.parseDouble(desRank.getText().toString()) > 64 && Double.parseDouble(desRank.getText().toString()) <= 69) {
-            desGPA = (double)-19/(double)5000 * Double.parseDouble(desRank.getText().toString()) + (double)3402/(double)625;
+        catch (NumberFormatException e) {
+            msg.setMessage("Invalid Input");
+
+            msg.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            msg.show();
+            return;
         }
-
-        if (Double.parseDouble(desRank.getText().toString()) > 69 && Double.parseDouble(desRank.getText().toString()) <= 71) {
-            desGPA = (double)-7/(double)2000 * Double.parseDouble(desRank.getText().toString()) + (double)2169/(double)400;
-        }
-
-        if (Double.parseDouble(desRank.getText().toString()) > 71 && Double.parseDouble(desRank.getText().toString()) <= 105) {
-            desGPA = (double)-73/(double)17000 * Double.parseDouble(desRank.getText().toString()) + (double)93141/(double)17000;
-        }
-
-        if (Double.parseDouble(desRank.getText().toString()) > 105 && Double.parseDouble(desRank.getText().toString()) <= 109) {
-            desGPA = (double)-31/(double)8000 * Double.parseDouble(desRank.getText().toString()) + (double)43479/(double)8000;
-        }
-
-
-
-
-
-        cGPA = Double.parseDouble(curGPA.getText().toString());
-        sLef = Double.parseDouble(semLeft.getText().toString());
-        sDon = Double.parseDouble(semDone.getText().toString());
 
         fGPA = (((desGPA * (sDon + sLef)) - (cGPA * sDon)) / sLef);
-        System.out.println("test" + sLef);
 
-        AlertDialog msg = new AlertDialog.Builder(MainActivity.this).create();
+
+
 
         DecimalFormat doubleFormat = new DecimalFormat("#.####");
 
@@ -100,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             msg.setMessage("In order to get " + desRank.getText().toString() + " you must get a " + doubleFormat.format(fGPA) + " over " + semLeft.getText().toString() + " semesters.");
         }
+
         msg.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -107,8 +142,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         msg.show();
-
-
 
 
     }
