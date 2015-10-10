@@ -8,18 +8,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My current GPA is"
+        android:text="Current GPA"
         android:id="@+id/textView"
+        android:textSize="24dp"
+        android:layout_alignTop="@+id/curGPA"
         android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="and my desired rank is"
+        android:text="Desired Rank"
         android:id="@+id/textView2"
         android:layout_marginRight="4000dp"
         android:layout_below="@+id/curGPA"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textSize="23dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -48,8 +51,8 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/curGPA"
-        android:layout_below="@+id/textView"
-        android:layout_toEndOf="@+id/textView3" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -57,13 +60,13 @@
         android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/desRank"
-        android:layout_below="@+id/textView2"
-        android:layout_toEndOf="@+id/textView3" />
+        android:layout_below="@+id/curGPA"
+        android:layout_alignEnd="@+id/textView4" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="semesters and I would like to get this GPA in"
+        android:text="I would like to get this GPA in"
         android:id="@+id/das"
         android:layout_below="@+id/semDone"
         android:layout_alignParentStart="true" />
@@ -75,7 +78,7 @@
         android:ems="10"
         android:id="@+id/semDone"
         android:layout_below="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -84,6 +87,24 @@
         android:ems="10"
         android:id="@+id/semLeft"
         android:layout_below="@+id/das"
-        android:layout_toEndOf="@+id/textView3" />
+        android:layout_alignStart="@+id/semDone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="semesters"
+        android:id="@+id/textView4"
+        android:layout_alignBaseline="@+id/semDone"
+        android:layout_alignBottom="@+id/semDone"
+        android:layout_toEndOf="@+id/semDone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="semesters"
+        android:id="@+id/textView5"
+        android:layout_alignBaseline="@+id/semLeft"
+        android:layout_alignBottom="@+id/semLeft"
+        android:layout_toEndOf="@+id/semLeft" />
 
 </RelativeLayout>
