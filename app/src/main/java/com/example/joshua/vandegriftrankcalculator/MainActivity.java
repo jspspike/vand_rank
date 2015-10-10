@@ -1,9 +1,12 @@
 package com.example.joshua.vandegriftrankcalculator;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,7 +15,7 @@ import java.text.DecimalFormat;
 import android.app.AlertDialog;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +37,21 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_help) {
+            String subject = "Helping out Vandegrift Rank";
+            String text = "My current GPA is: *ENTER YOUR GPA HERE" + "\n" + "My current rank is: *ENTER YOUR RANK HERE*";
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            intent.putExtra(Intent.EXTRA_TEXT, text);
+            intent.putExtra(Intent.EXTRA_EMAIL, "jspspike@gmail.com");
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                Log.e(LOG_TAG, "Error", e);
+            }
+
+
         }
         return super.onOptionsItemSelected(item);
     }
