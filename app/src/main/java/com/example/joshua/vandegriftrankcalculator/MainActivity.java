@@ -10,13 +10,27 @@ import android.view.View;
 import android.widget.EditText;
 import java.text.DecimalFormat;
 import android.app.AlertDialog;
+import android.widget.TabHost;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_tab);
+
+        TabHost tabHost =(TabHost) findViewById(R.id.tabHost);
+        tabHost.setup();
+
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("GPA");
+        tabSpec.setContent(R.id.tabGPA);
+        tabSpec.setIndicator("GPA");
+        tabHost.addTab(tabSpec);
+
+        tabSpec = tabHost.newTabSpec("Rank");
+        tabSpec.setContent(R.id.tabRank);
+        tabSpec.setIndicator("Rank");
+        tabHost.addTab(tabSpec);
     }
 
     @Override
