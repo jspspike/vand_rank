@@ -1,37 +1,35 @@
-package com.example.joshua.vandegriftrankcalculator;
+package com.example.johnson_849323.vand_rank;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import java.text.DecimalFormat;
-import android.app.AlertDialog;
 import android.widget.TabHost;
 
-public class MainActivity extends AppCompatActivity {
+import java.text.DecimalFormat;
+
+
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_tab);
+        setContentView(R.layout.activity_main);
 
-        TabHost tabHost =(TabHost) findViewById(R.id.tabHost);
+        TabHost tabHost = (TabHost) findViewById(R.id.tabHost);
         tabHost.setup();
 
-        TabHost.TabSpec tabSpec = tabHost.newTabSpec("GPA");
-        tabSpec.setContent(R.id.tabGPA);
-        tabSpec.setIndicator("GPA");
-        tabHost.addTab(tabSpec);
+        TabHost.TabSpec tabSpec = tabHost.newTabSpec("tabGPA");
+        tabHost.addTab(tabHost.newTabSpec("tabGPA").setIndicator("GPA").setContent(R.id.tabGPA));
 
-        tabSpec = tabHost.newTabSpec("Rank");
-        tabSpec.setContent(R.id.tabRank);
-        tabSpec.setIndicator("Rank");
-        tabHost.addTab(tabSpec);
+        tabSpec = tabHost.newTabSpec("tabRank");
+        tabHost.addTab(tabHost.newTabSpec("tabRank").setIndicator("Rank").setContent(R.id.tabRank));
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -51,16 +49,18 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
-    public void onPress(View v) {
-        double fGPA, desGPA, sLef, sDon, cGPA;
+
+    public void calc1Pressed(View v) {
+        double fGPA,desGPA, sLef, sDon, cGPA;
 
         desGPA = -1;
 
-        EditText curGPA = (EditText) findViewById(R.id.curGPA);
+        EditText curGPA = (EditText) findViewById(R.id.curGpa);
         EditText desRank = (EditText) findViewById(R.id.desRank);
-        EditText semDone = (EditText) findViewById(R.id.semDone);
+        EditText semDone = (EditText) findViewById(R.id.semComplete);
         EditText semLeft = (EditText) findViewById(R.id.semLeft);
 
         AlertDialog msg = new AlertDialog.Builder(MainActivity.this).create();
@@ -156,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         msg.show();
-
 
     }
 }

@@ -1,4 +1,4 @@
-package com.example.joshua.vandegriftrankcalculator;
+package com.example.johnson_849323.vand_rank;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
