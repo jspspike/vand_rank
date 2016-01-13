@@ -53,6 +53,26 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void calc2Pressed(View v) {
+        double cGPA, eGPA, semCGPA, semEGPA;
+        int desRank = -1;
+
+        EditText curGPA = (EditText) findViewById(R.id.cGPA);
+        EditText exGPA = (EditText) findViewById(R.id.eGPA);
+        EditText semcurGPA = (EditText) findViewById(R.id.semCGPA);
+        EditText semexGPA = (EditText) findViewById(R.id.semEGPA);
+
+        AlertDialog msg = new AlertDialog.Builder(MainActivity.this).create();
+
+        try {
+            cGPA = (Double.parseDouble(exGPA.getText().toString()) * Integer.parseInt(semexGPA.getText().toString())) + (Double.parseDouble(curGPA.getText().toString()) + Integer.parseInt(semcurGPA.getText().toString()));
+        }
+
+        catch (NumberFormatException e) {
+
+        }
+    }
+
     public void calc1Pressed(View v) {
         double fGPA,desGPA, sLef, sDon, cGPA;
 
