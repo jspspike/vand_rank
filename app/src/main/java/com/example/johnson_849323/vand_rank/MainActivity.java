@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,11 +67,76 @@ public class MainActivity extends Activity {
 
         try {
             cGPA = (Double.parseDouble(exGPA.getText().toString()) * Integer.parseInt(semexGPA.getText().toString())) + (Double.parseDouble(curGPA.getText().toString()) + Integer.parseInt(semcurGPA.getText().toString()));
+            Log.v("Test", "" + cGPA);
+
+            if (cGPA >= 5.442) {
+                desRank = (int) ((-400.0 / 3.0) * cGPA + (3703.0 / 5));
+            }
+
+            if (cGPA >= 5.339 && cGPA < 5.442) {
+                desRank = (int) ((-14000.0 / 103) * cGPA + (77733.0 / 103));
+            }
+
+            if (cGPA >= 5.275 && cGPA < 5.339) {
+                desRank = (int) ((-875.0 / 4) * cGPA + (38301.0 / 32));
+            }
+
+            if (cGPA >= 5.2 && cGPA < 5.275) {
+                desRank = (int) ((-280.0) * cGPA + (1520.0));
+            }
+
+            if (cGPA >= 5.181 && cGPA < 5.2) {
+                desRank = (int) ((-5000.0 / 19) * cGPA + (27216.0 / 16));
+            }
+
+            if (cGPA >= 5.174 && cGPA < 5.181) {
+                desRank = (int) ((-2000.0 / 7) * cGPA + (10845.0 / 7));
+            }
+
+            if (cGPA >= 5.028 && cGPA < 5.174) {
+                desRank = (int) ((-17000.0 / 73) * cGPA + (93141.0 / 73));
+                Log.v("swags", desRank + ":" + cGPA);
+            }
+
+            if (cGPA >= 5.0109 && cGPA < 5.028) {
+                desRank = (int) ((-40000.0 / 171) * cGPA + (73025.0 / 57));
+            }
+
+            Log.v("swag", desRank + ":" + cGPA);
+
         }
 
         catch (NumberFormatException e) {
+            msg.setMessage("Invalid Input");
 
+            msg.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            msg.show();
+            return;
         }
+
+
+        Log.v("swag", desRank + ":" + cGPA);
+        msg.setTitle("Necessary GPA");
+        if (cGPA < 5.0109) {
+            msg.setMessage("Sorry but the Rank model only goes from rank 1-109. If you would like to share your rank anonymously to help make a better model please email a screenshot of your rank and GPA from naviance to jspspike@gmail.com");
+        }
+
+        else {
+            msg.setMessage("Your predicted rank is " + desRank + " with a " + cGPA + " GPA.");
+        }
+
+        msg.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        msg.show();
     }
 
     public void calc1Pressed(View v) {
