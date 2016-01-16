@@ -48,6 +48,7 @@ public class MainActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -66,8 +67,8 @@ public class MainActivity extends Activity {
         AlertDialog msg = new AlertDialog.Builder(MainActivity.this).create();
 
         try {
-            cGPA = (Double.parseDouble(exGPA.getText().toString()) * Integer.parseInt(semexGPA.getText().toString())) + (Double.parseDouble(curGPA.getText().toString()) + Integer.parseInt(semcurGPA.getText().toString()));
-            Log.v("Test", "" + cGPA);
+            cGPA = (Double.parseDouble(exGPA.getText().toString()) * Integer.parseInt(semexGPA.getText().toString())) + (Double.parseDouble(curGPA.getText().toString()) * Integer.parseInt(semcurGPA.getText().toString()));
+            cGPA /= (Double.parseDouble(semexGPA.getText().toString()) + Double.parseDouble(semcurGPA.getText().toString()));
 
             if (cGPA >= 5.442) {
                 desRank = (int) ((-400.0 / 3.0) * cGPA + (3703.0 / 5));
@@ -95,14 +96,12 @@ public class MainActivity extends Activity {
 
             if (cGPA >= 5.028 && cGPA < 5.174) {
                 desRank = (int) ((-17000.0 / 73) * cGPA + (93141.0 / 73));
-                Log.v("swags", desRank + ":" + cGPA);
             }
 
             if (cGPA >= 5.0109 && cGPA < 5.028) {
                 desRank = (int) ((-40000.0 / 171) * cGPA + (73025.0 / 57));
             }
 
-            Log.v("swag", desRank + ":" + cGPA);
 
         }
 
@@ -120,10 +119,9 @@ public class MainActivity extends Activity {
         }
 
 
-        Log.v("swag", desRank + ":" + cGPA);
         msg.setTitle("Necessary GPA");
         if (cGPA < 5.0109) {
-            msg.setMessage("Sorry but the Rank model only goes from rank 1-109. If you would like to share your rank anonymously to help make a better model please email a screenshot of your rank and GPA from naviance to jspspike@gmail.com");
+            msg.setMessage("Sorry but the Rank model only goes from rank 1-109. If you would like to share your rank anonymously press the \"Help improve rank Data\" button in the top right menu or email a screenshot of your Naviance gpa and rank under my profile to jspspike@gmail.com.");
         }
 
         else {
@@ -228,7 +226,7 @@ public class MainActivity extends Activity {
 
         msg.setTitle("Necessary GPA");
         if (Double.parseDouble(desRank.getText().toString()) > 109) {
-            msg.setMessage("Sorry but the Rank model only goes from rank 1-109. If you would like to share your rank anonymously to help make a better model please email a screenshot of your rank and GPA from naviance to jspspike@gmail.com");
+            msg.setMessage("Sorry but the Rank model only goes from rank 1-109. If you would like to share your rank anonymously press the \"Help improve rank Data\" button in the top right menu or email a screenshot of your Naviance gpa and rank under my profile to jspspike@gmail.com.");
         }
 
         else {
