@@ -2,7 +2,10 @@ package com.example.johnson_849323.vand_rank;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -49,6 +52,18 @@ public class MainActivity extends Activity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
 
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            Uri uri = Uri.parse("mailto:jspspike@gmail.com?subject=GPA/Rank Data&body=My GPA is (place GPA here) and my rank is (place rank here).\n\n If possible attach a screenshot of your naviance for verification but it is not required to submit data");
+
+            intent.setData(uri);
+
+            try{
+                startActivity(intent);
+            }
+
+            catch (ActivityNotFoundException e) {
+                Log.w("mail fail", e);
+            }
             return true;
         }
 
@@ -56,7 +71,7 @@ public class MainActivity extends Activity {
     }
 
     public void calc2Pressed(View v) {
-        double cGPA, eGPA, semCGPA, semEGPA;
+        double cGPA;
         int desRank = -1;
 
         EditText curGPA = (EditText) findViewById(R.id.cGPA);
