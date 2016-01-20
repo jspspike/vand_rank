@@ -4,5 +4,6 @@
     <string name="app_name">vand_rank</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2645219985592513/9691666518</string>
 
 </resources>

@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TabHost;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.DecimalFormat;
 
@@ -32,6 +34,10 @@ public class MainActivity extends Activity {
 
         tabSpec = tabHost.newTabSpec("tabRank");
         tabHost.addTab(tabHost.newTabSpec("tabRank").setIndicator("Rank").setContent(R.id.tabRank));
+
+        AdView mAdView = (AdView) findViewById(R.id.adViews);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
 
