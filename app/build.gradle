@@ -5,11 +5,11 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.example.johnson_849323.vand_rank"
+        applicationId "com.jspspike.joshua.vandegriftrankcalculator"
         minSdkVersion 21
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "2.01"
     }
     buildTypes {
         release {
